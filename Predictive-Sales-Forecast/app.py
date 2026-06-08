@@ -41,14 +41,15 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ---------------- Load Dataset with Caching ---------------- #
 @st.cache_data
 def load_data():
+    import os
+
     st.write("Current Directory:", os.getcwd())
     st.write("Files Available:", os.listdir("."))
 
     try:
-        df = pd.read_csv("superstore.csv")
+        df = pd.read_csv("Predictive-Sales-Forecast/superstore.csv")
 
         df["Order Date"] = pd.to_datetime(df["Order Date"])
         df["Year-Month"] = df["Order Date"].dt.to_period("M").astype(str)

@@ -44,7 +44,7 @@ st.markdown(
 @st.cache_data
 def load_data():
     try:
-        df = pd.read_csv("superstore.csv")
+       df = pd.read_csv("Predictive-Sales-Forecast/superstore.csv")
         df["Order Date"] = pd.to_datetime(df["Order Date"])
 
         # Create Year-Month for accurate chronological grouping

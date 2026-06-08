@@ -84,9 +84,7 @@ One of the most important parts of this project was deploying the dashboard as a
 
 The dashboard is now available online and can be accessed directly through a web browser without installing any software.
 
-### 🔗 Live Dashboard
 
-👉 https://gauravdataai-predictive-sal-predictive-sales-forecastapp-itlpmt.streamlit.app/
 
 ### 📋 Deployment Details
 

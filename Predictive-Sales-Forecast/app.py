@@ -44,7 +44,9 @@ st.markdown(
 @st.cache_data
 def load_data():
     try:
-       df = pd.read_csv("Predictive-Sales-Forecast/superstore.csv")
+        # Try normal path first
+        df = pd.read_csv("superstore.csv")
+
         df["Order Date"] = pd.to_datetime(df["Order Date"])
 
         # Create Year-Month for accurate chronological grouping
@@ -53,8 +55,9 @@ def load_data():
         df["Month"] = df["Order Date"].dt.month_name()
 
         return df
+
     except FileNotFoundError:
-        st.error("⚠️ File 'superstore.csv' not found. Please ensure it is in the same directory.")
+        st.error("⚠️ File 'superstore.csv' not found.")
         st.stop()
 
 df = load_data()

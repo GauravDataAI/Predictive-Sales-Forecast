@@ -4,6 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from prophet import Prophet
 import warnings
+import os
 
 # Suppress Prophet's minor logging warnings for a cleaner UI
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -43,21 +44,21 @@ st.markdown(
 # ---------------- Load Dataset with Caching ---------------- #
 @st.cache_data
 def load_data():
+    st.write("Current Directory:", os.getcwd())
+    st.write("Files Available:", os.listdir("."))
+
     try:
-        # Try normal path first
         df = pd.read_csv("superstore.csv")
 
         df["Order Date"] = pd.to_datetime(df["Order Date"])
-
-        # Create Year-Month for accurate chronological grouping
         df["Year-Month"] = df["Order Date"].dt.to_period("M").astype(str)
         df["Year"] = df["Order Date"].dt.year
         df["Month"] = df["Order Date"].dt.month_name()
 
         return df
 
-    except FileNotFoundError:
-        st.error("⚠️ File 'superstore.csv' not found.")
+    except Exception as e:
+        st.error(f"Error: {e}")
         st.stop()
 
 df = load_data()
